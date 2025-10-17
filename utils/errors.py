@@ -18,3 +18,7 @@ class TransactionNotFoundError(FinanceTrackerError):
 
 class CategoryNotFoundError(FinanceTrackerError):
     pass
+
+
+class DateNotFoundError(FinanceTrackerError):
+    pass
