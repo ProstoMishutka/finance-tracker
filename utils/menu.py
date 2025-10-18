@@ -1,4 +1,12 @@
-def main_menu():
+def main_menu() -> None:
+    """
+    Displays the main menu of the CLI Finance Tracker application.
+
+    This function prints the main menu options to the console,
+    allowing the user to navigate through the application's features.
+
+    :return: None
+    """
     menu_text = (
         "\n" + "=" * 33 + "\n"
         "       FINANCE TRACKER\n" + "=" * 33 + "\n"
@@ -11,7 +19,16 @@ def main_menu():
     print(menu_text)
 
 
-def view_transactions_menu():
+def view_transactions_menu() -> None:
+    """
+    Displays the transactions menu of the CLI Finance Tracker application.
+
+    This menu allows the user to choose how to view transactions,
+    including viewing all transactions, filtering by date range,
+    viewing transactions incomes, expenses, or filtering by category.
+
+    :return: None
+    """
     menu_text = (
         "\n" + "=" * 33 + "\n"
         "   VIEW TRANSACTIONS MENU\n" + "=" * 33 + "\n"
@@ -25,7 +42,17 @@ def view_transactions_menu():
     print(menu_text)
 
 
-def view_financial_summary():
+def view_financial_summary() -> None:
+    """
+    Displays the financial summary menu of the CLI Finance Tracker application.
+
+    This menu allows the user to:
+        - View total income for a specified date range
+        - View total expenses for a specified date range
+        - View the current balance
+
+    :return: None
+    """
     menu_text = (
         "\n" + "=" * 33 + "\n"
         "       VIEW FINANCIAL SUMMARY\n"
