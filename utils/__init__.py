@@ -1,5 +1,5 @@
 from .menu import main_menu, view_transactions_menu, view_financial_summary
-from .cli_menu import handle_menu_choice
+from .cli_menu import handle_menu_choice, execute_menu_option
 from .errors import (
     EmptyInputError,
     InvalidInputError,
@@ -13,9 +13,10 @@ __all__ = [
     "view_transactions_menu",
     "view_financial_summary",
     "handle_menu_choice",
+    "execute_menu_option",
     "EmptyInputError",
     "InvalidInputError",
     "TransactionNotFoundError",
     "CategoryNotFoundError",
-    "DateNotFoundError"
+    "DateNotFoundError",
 ]

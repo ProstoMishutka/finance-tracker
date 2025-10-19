@@ -55,12 +55,10 @@ def view_financial_summary() -> None:
     """
     menu_text = (
         "\n" + "=" * 33 + "\n"
-        "       VIEW FINANCIAL SUMMARY\n"
-        + "=" * 33 + "\n"
+        "       VIEW FINANCIAL SUMMARY\n" + "=" * 33 + "\n"
         "1. View total income by date range\n"
         "2. View total expenses by date range\n"
         "3. View current balance\n"
-        "0. Back to main menu\n"
-        + "=" * 33
+        "0. Back to main menu\n" + "=" * 33
     )
     print(menu_text)

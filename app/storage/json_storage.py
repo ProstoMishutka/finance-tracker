@@ -12,9 +12,9 @@ class JsonStorage:
 
     def __init__(self, json_path: str = None) -> None:
         """
-        Initializes a JsonStorage object. The object accepts an optional parameter json_path — the path to a JSON file. If the path is not provided or does not exist, the object's json_path attribute is set to the default path data.json.
-        :param json_path: str | None
-    Path to the JSON file. If None, defaults to "data.json".
+            Initializes a JsonStorage object. The object accepts an optional parameter json_path — the path to a JSON file. If the path is not provided or does not exist, the object's json_path attribute is set to the default path data.json.
+            :param json_path: str | None
+        Path to the JSON file. If None, defaults to "data.json".
         """
         if json_path is None:
             self.json_path = Path(__file__).resolve().parent / "data.json"
