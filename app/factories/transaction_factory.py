@@ -1,6 +1,7 @@
+from datetime import datetime
+
 from app.logs import logger
 from utils import EmptyInputError, InvalidInputError
-from datetime import datetime
 
 
 class TransactionFactory:
@@ -176,7 +177,7 @@ class TransactionFactory:
         """
         self._description = description
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """
         Returns a string representation of the transaction object.
 

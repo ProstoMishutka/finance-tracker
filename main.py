@@ -34,7 +34,9 @@ Menu Overview:
     3: Show current balance
 """
 
+import sys
 from pathlib import Path
+
 from app import JsonStorage, TransactionDictManager, logger, TransactionFactory
 from utils import (
     EmptyInputError,
@@ -44,7 +46,6 @@ from utils import (
 from utils.deserializer import deserialize_transactions
 from utils.menu import main_menu, view_transactions_menu, view_financial_summary
 from utils.cli_menu import handle_menu_choice, execute_menu_option
-import sys
 
 
 # Allowed options for main menu and submenus

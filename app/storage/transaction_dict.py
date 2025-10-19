@@ -1,5 +1,8 @@
-from app.factories import TransactionFactory
+from collections import defaultdict
 from datetime import datetime
+from typing import Callable
+
+from app.factories import TransactionFactory
 from app.logs import logger
 from utils import (
     InvalidInputError,
@@ -7,7 +10,6 @@ from utils import (
     CategoryNotFoundError,
     DateNotFoundError,
 )
-from collections import defaultdict
 
 
 class TransactionDictManager:
@@ -23,7 +25,7 @@ class TransactionDictManager:
         self.data = defaultdict(list)
 
     @staticmethod
-    def print_transaction_header(date: str):
+    def print_transaction_header(date: str) -> None:
         """
         Prints a transaction table header for a given date.
 
@@ -58,7 +60,7 @@ class TransactionDictManager:
             f"date={transaction_data['date']}"
         )
 
-    def show_all_transactions_for_all_time(self):
+    def show_all_transactions_for_all_time(self) -> None:
         """
         Displays all transactions sorted by date.
 
@@ -82,7 +84,7 @@ class TransactionDictManager:
                 )
             print("=" * 50)
 
-    def get_transactions_by_date_range(self, start_date: str):
+    def get_transactions_by_date_range(self, start_date: str) -> Callable:
         """
         Returns a function to filter transactions by end date.
         If start_date is empty, all transactions up to end_date are returned.
@@ -99,7 +101,7 @@ class TransactionDictManager:
                 logger.warning(f"Start date '{start_date}' is not a valid date.")
                 raise InvalidInputError("Start date must be in YYYY-MM-DD format.")
 
-        def inner(end_date: str):
+        def inner(end_date: str) -> list[str]:
             if end_date:
                 try:
                     end_date = datetime.strptime(end_date, "%Y-%m-%d").date()
@@ -167,7 +169,7 @@ class TransactionDictManager:
 
         return inner
 
-    def show_transaction_by_date_range(self, sorted_dates: list) -> None:
+    def show_transaction_by_date_range(self, sorted_dates: list[str]) -> None:
         """
         Displays transactions for a specified date range.
 
@@ -194,7 +196,7 @@ class TransactionDictManager:
             f"The transactions from the specified date up to today have been successfully viewed."
         )
 
-    def show_transaction_income_by_range(self, sorted_dates: list):
+    def show_transaction_income_by_range(self, sorted_dates: list[str]) -> None:
         """
         Displays only income transactions in the specified date range.
 
@@ -232,7 +234,7 @@ class TransactionDictManager:
 
         logger.info('Transactions of type "income" have been successfully viewed.')
 
-    def show_transaction_expenses_by_range(self, sorted_dates: list):
+    def show_transaction_expenses_by_range(self, sorted_dates: list[str]) -> None:
         """
         Displays only expense transactions in the specified date range.
 
@@ -270,7 +272,9 @@ class TransactionDictManager:
 
         logger.info('Transactions of type "expense" have been successfully viewed.')
 
-    def show_transaction_by_category(self, category: str, sorted_dates: list):
+    def show_transaction_by_category(
+        self, category: str, sorted_dates: list[str]
+    ) -> None:
         """
         Displays transactions filtered by a specific category.
 
@@ -321,7 +325,7 @@ class TransactionDictManager:
             f"Transaction in the category {category} have been successfully viewed."
         )
 
-    def show_total_type_by_range(self, tr_type, sorted_dates: list) -> str | None:
+    def show_total_type_by_range(self, tr_type, sorted_dates: list[str]) -> str | None:
         """
         Displays the total amount for a specific transaction type (income/expense) in the given range.
 
@@ -361,7 +365,7 @@ class TransactionDictManager:
         logger.info(f"Total {tr_type} for the specified period — {total_type:.2f}.")
         print(f"Total {tr_type} for the specified period — {total_type:.2f}.")
 
-    def show_current_balance(self):
+    def show_current_balance(self) -> None:
         """
         Displays the current balance (total income - total expenses).
         """
@@ -386,7 +390,7 @@ class TransactionDictManager:
         balance = total_income - total_expense
         print(f"Current balance: {balance:.2f}")
 
-    def show_transaction_by_date(self, date: str):
+    def show_transaction_by_date(self, date: str) -> Callable:
         """
         Displays all transactions for a specific date and returns a function
         to delete a transaction by its index.
@@ -429,7 +433,7 @@ class TransactionDictManager:
                 f"{i}: [{transaction['date']}] {transaction['t_type']} | {transaction['category']} | {transaction['amount']:<8} | {transaction['description']}"
             )
 
-        def delete_transaction(index: str):
+        def delete_transaction(index: str) -> None:
             """
             Deletes a transaction by its 1-based index from the specified date.
 

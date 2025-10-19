@@ -1,3 +1,5 @@
+from typing import TYPE_CHECKING, Callable
+
 from app.logs import logger
 from .errors import (
     EmptyInputError,
@@ -5,7 +7,6 @@ from .errors import (
     CategoryNotFoundError,
     TransactionNotFoundError,
 )
-from typing import TYPE_CHECKING, Callable
 
 if TYPE_CHECKING:
     from app import TransactionDictManager
@@ -39,7 +40,9 @@ def handle_menu_choice(option: str, pattern: list[str]) -> bool:
 
 
 def execute_menu_option(
-    manager: "TransactionDictManager", callback: Callable, option: str | None = None
+    manager: "TransactionDictManager",
+    callback: Callable,
+    selected_option: str | None = None,
 ) -> None:
     """
     Executes a menu action that involves selecting a date range.
@@ -54,7 +57,7 @@ def execute_menu_option(
         An instance of TransactionDictManager used to retrieve and filter transactions.
     :param callback: Callable
         The function to execute with the filtered transaction dates (and optionally an option).
-    :param option: str | None, optional
+    :param selected_option: str | None, optional
         An optional argument to pass to the callback function as the first parameter.
     :raises InvalidInputError:
         If the user inputs an invalid start or end date that does not match the format YYYY-MM-DD
@@ -85,7 +88,7 @@ def execute_menu_option(
 
         try:
             transaction_dates = date_range_fn(end_date)
-            if option:
+            if selected_option:
                 callback(option, transaction_dates)
             else:
                 callback(transaction_dates)
