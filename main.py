@@ -141,6 +141,15 @@ def main(json_path: Path | str | None = None):
 
                 # Add transaction to manager
                 manager.add_transaction(transaction)
+                print(
+                    "=" * 31 + "\n"
+                    "Transaction added successfully!\n"
+                    f"- Type: {transaction.t_type}\n"
+                    f"- Category: {transaction.category}\n"
+                    f"- Amount: {transaction.amount}\n"
+                    f"- Date: {transaction.date}\n"
+                    f"- Description: {transaction.description}"
+                )
 
             elif option == "2":
                 # View transactions submenu

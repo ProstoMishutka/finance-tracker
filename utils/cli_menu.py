@@ -71,8 +71,8 @@ def execute_menu_option(
     """
     while True:
         start_date = input(
-            "Enter the start date in YYYY-MM-DD format. "
-            "If left empty, all dates up to the specified end date will be considered: "
+            "Enter the start date (YYYY-MM-DD). "
+            "If empty, all dates up to end date are included: "
         )
         try:
             date_range_fn = manager.get_transactions_by_date_range(start_date)
@@ -89,7 +89,7 @@ def execute_menu_option(
         try:
             transaction_dates = date_range_fn(end_date)
             if selected_option:
-                callback(option, transaction_dates)
+                callback(selected_option, transaction_dates)
             else:
                 callback(transaction_dates)
 
